@@ -1,0 +1,9 @@
+{
+  "source": "格式示例；现场使用前填入授权资料来源",
+  "demo": true,
+  "nodes": [
+    {"id":"EX-A","label":"示例起点井","x":100,"y":100},
+    {"id":"EX-B","label":"示例终点井","x":400,"y":100}
+  ],
+  "pipes": [{"id":"EX-P01","from":"EX-A","to":"EX-B","length":40,"diameter":250,"status":"normal","material":"PVC-U","directed":false}]
+}

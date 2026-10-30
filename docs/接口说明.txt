@@ -1,0 +1,24 @@
+﻿管脉探微 API v0.2（2026-10-29）
+基础地址：http://127.0.0.1:8080/api。身份请求头Authorization: Bearer token。
+GET /health
+POST /auth/login {username,password} -> token,role,name,displayName
+GET /state -> nodes,pipes,tasks,devices,alerts,messages,events,networkSource,demo。worker数据按本人已下发任务过滤。
+GET /workers 管理员，含片区、账号启用状态、任务数量、用时、未确认告警。
+POST /workers {username,displayName,password,enabled,phone,area} 管理员新增。
+PUT /workers/{username} {displayName,password,enabled,phone,area} 管理员编辑；password留空保持。
+PUT /network {nodes,pipes,source,demo} 管理员；检查连接、长度、管径和任务引用，运行中禁止更换。
+POST /routes/preview {start,end,via:[],avoid:[],minDiameter:0,flowOnly:false} -> pipes,length,legs,method。
+POST /tasks {name,start,end,worker,device,via,avoid,minDiameter,flowOnly} -> draft。
+POST /tasks/{id}/action {action,note,weather}。
+  approve管理员draft→approved，dispatch管理员approved→dispatched；start本人worker dispatched/paused→running且weather=dry。
+  pause运行中暂停；finish本人提交并填写note→completed；review管理员复核→reviewed。
+POST /tasks/{id}/messages {text} 管理员指令或本人反馈。
+POST /messages/{id}/ack {} 接收方确认。
+POST /alerts/{id}/ack {} 管理员或任务本人确认。
+PUT /tasks/{id}/video {url} 管理员或任务本人；HTTP/HTTPS或空值。
+GET /tasks/{id}/telemetry 最近1000条有效上报，管理员或任务本人。
+POST /device/telemetry {device,task,battery,distance,temperature,alarm}，请求头X-Device-Key。
+  设备已绑定且任务running方可上报；alarm非空产生告警并暂停任务。
+HTTP400参数/状态错误，401登录/密钥失败，403权限不足。
+H2文件数据库持久保存业务状态和遥测；会话在内存中，重启须重新登录。
+网页与App共用REST接口，5秒轮询。视频由网关独立提供，实物运动控制需板端联调。

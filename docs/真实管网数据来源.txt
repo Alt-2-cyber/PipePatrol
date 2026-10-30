@@ -1,0 +1,14 @@
+管脉探微 · 公开真实管网服务
+已核验服务：City of Gold Coast（澳大利亚黄金海岸市）Sewer Pipe Non Pressure。
+图层： https://services.arcgis.com/3vStCH7NDoBOZ5zn/arcgis/rest/services/Sewer_Pipe_Non_Pressure/FeatureServer/1
+许可：Creative Commons Attribution 3.0 Unported，https://creativecommons.org/licenses/by/3.0/
+源数据提供方：City of Gold Coast。资料访问日期：2026-10-29。
+API查询：https://services.arcgis.com/3vStCH7NDoBOZ5zn/arcgis/rest/services/Sewer_Pipe_Non_Pressure/FeatureServer/1/query?where=1%3D1&geometry=153.415%2C-28.010%2C153.435%2C-27.990&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CSAPOBJECTID%2CDIAMETER_MM%2CLENGTH_M%2CPIPE_NON_PRESSURE_MATERIAL%2CFROM_SAPID%2CTO_SAPID&outSR=4326&returnGeometry=true&resultRecordCount=180&f=geojson
+查询覆盖Surfers Paradise附近局部区域，最多180条资产；API返回上限不是完整管网范围。
+网页“管网与规划”->“公开管网参考”查询此API，断网时使用同源缓存快照并显示日期。
+公开图保留真实折线与管径，支持200—300mm筛选、点击属性、导出GeoJSON、可选OpenStreetMap地面底图。
+当前片区仍使用独立的本地管网资料，不把海外公开资料写成你们的真实巡检成果。
+国内高德/天地图提供地面地图与导航，通常不提供地下排水井和管段档案；本地作业图应来自物业、园区或排水单位授权资料。
+当前导入格式：管网JSON，或WGS84 GeoJSON中的检查井Point和管段LineString，字段定义见示例。
+授权ArcGIS FeatureServer支持query接口、outSR=4326及f=geojson；具体字段需转为本项目模型，不能只把道路路线当地下管线。
+OSM地面底图通过公开瓦片服务按需加载，保持署名，不做离线批量抓取。真实管网参考图不作为现场开挖或直接作业依据。

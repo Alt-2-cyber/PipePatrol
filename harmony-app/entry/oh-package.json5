@@ -1,0 +1,6 @@
+{
+  "name": "entry",
+  "version": "0.1.0",
+  "description": "现场巡检任务、消息与遥测",
+  "dependencies": {}
+}

@@ -1,0 +1,7 @@
+{
+  "modelVersion": "6.0.2",
+  "name": "pipepatrol-operator",
+  "version": "0.1.0",
+  "description": "管脉探微 原生鸿蒙作业端",
+  "dependencies": {}
+}
