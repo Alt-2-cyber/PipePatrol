@@ -19,7 +19,6 @@
 | 遥测模拟器 | 通过 Python 标准库发送电量、距离、温度与模拟告警，验证设备接入流程 |
 | 公开管网参考 | 展示 City of Gold Coast 局部真实无压污水管网，支持 200—300 mm 筛选、属性查看和 GeoJSON 导出 |
 
-当前开源内容为软件原型及接入说明。星闪中继链路、Hi3863 板端固件、电机控制、密封及管内通过性仍需实物开发和验证。软件“暂停任务”是业务状态更新；实体急停和板端保护需独立实现。详见 [硬件接入说明](hardware/硬件选型与接入说明.txt)。
 
 ## 组成与流程
 
@@ -113,20 +112,7 @@ Windows 命令行构建可设置 `DEVECO_HOME` 为 DevEco Studio 安装目录，
 
 已有记录显示应用曾完成 unsigned HAP 编译；这不代表已完成真机、摄像头或机器人链路验证。历史证据见 [验证记录](docs/验证记录.txt)。
 
-## 设备接入与接口
 
-先在网页审核并下发任务，再由工作人员开始任务，然后运行模拟器：
-
-```shell
-python hardware/设备遥测模拟器.py --task T-DEMO01 --count 5
-```
-
-`T-DEMO01` 为首次初始化的示例任务；如已完成，请使用新的运行中任务 ID。模拟器固定发送 `PP-001` 的数据，修改设备密钥后通过 `--key` 指定。使用 `--alarm` 可在最后一条遥测产生模拟告警。
-
-- [完整 API 说明](docs/接口说明.txt)
-- [遥测消息示例](shared/telemetry-example.json)
-- [管网导入示例](shared/管网导入示例.json)
-- `scripts/check-integration.py` 会新增模拟任务并走完管理端、作业端及遥测接口流程，应在测试数据库执行。
 
 ## 验证
 
@@ -147,13 +133,6 @@ npx playwright test
 
 Playwright 测试会创建人员与任务并修改示例管网，请使用单独的 `PIPE_DATA` 测试路径。CI 运行后端测试和网页构建，未包含鸿蒙 SDK、真实硬件或现场作业测试。
 
-## 数据与界面
-
-![公开无压污水管网参考](docs/screenshots/v2-public-network.png)
-
-园区检查井、任务与设备为演示资料，不能据此认定现场巡检效果。公开参考图来自 **City of Gold Coast · Sewer Pipe Non Pressure**，保留数据署名及 CC BY 3.0 许可；本地快照为 2026-10-29 的局部查询，最多 180 条管线。可选的 OpenStreetMap 底图使用在线瓦片。
-
-具体来源和适用许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 与 [真实管网数据来源](docs/真实管网数据来源.txt)。
 
 ## 参与贡献与许可
 
